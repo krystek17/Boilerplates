@@ -26,3 +26,12 @@
         update_cache: yes
     - name: add permissions
       shell: "usermod -aG docker vagrant"
+    
+    - name: install fish
+      apt:
+        name: fish
+    - name: default shell
+      user:
+        name: vagrant
+        shell: /usr/bin/fish
+
