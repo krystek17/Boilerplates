@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
-  config.vm.define "kannon"
+  config.vm.define "ubuntu"
   config.vm.box = "generic/ubuntu2004"
-  config.vm.hostname = "kannon"
+  config.vm.hostname = "ubuntu"
   config.vm.network "private_network", ip: "10.0.0.11"
   config.vm.provider "libvirt" do |v|
     v.memory = "1024"
