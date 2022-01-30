@@ -26,7 +26,18 @@
         update_cache: yes
     - name: add permissions
       shell: "usermod -aG docker vagrant"
-    
+
+    - name: ctop -dependencies
+      apt_key:
+        url: https://azlux.fr/repo.gpg.key
+    - name: add ctop repo
+      apt_repository:
+        repo: deb http://packages.azlux.fr/debian/ stable main
+    - name: install ctop
+      apt:
+        name: docker-ctop
+        update_cache: yes
+
     - name: install fish
       apt:
         name: fish
@@ -34,4 +45,3 @@
       user:
         name: vagrant
         shell: /usr/bin/fish
-
