@@ -1,38 +1,37 @@
 ---
 - hosts: all
   become: yes
+  vars_files:
+  - vars.yml
   tasks:
     - name : install prerequisites
       apt:
-        name:
-          - apt-transport-https
-          - ca-certificates
-          - curl
-          - gnupg-agent
-          - software-properties-common
+        name: "{{ MODULES }}"
+    
     - name: add apt-key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
+    
     - name: add docker repo
       apt_repository:
         repo: deb https://download.docker.com/linux/ubuntu focal stable
+
     - name: install docker
       apt:
-        name:
-          - docker-ce
-          - docker-ce-cli
-          - containerd.io
-          - docker-compose
+        name: "{{ DOCKER }}"
         update_cache: yes
+
     - name: add permissions
       shell: "usermod -aG docker vagrant"
 
     - name: ctop -dependencies
       apt_key:
         url: https://azlux.fr/repo.gpg.key
+
     - name: add ctop repo
       apt_repository:
         repo: deb http://packages.azlux.fr/debian/ stable main
+
     - name: install ctop
       apt:
         name: docker-ctop
@@ -41,6 +40,7 @@
     - name: install fish
       apt:
         name: fish
+
     - name: default shell
       user:
         name: vagrant
