@@ -1,28 +1,29 @@
 ---
 - hosts: all
   become: yes
-  vars_files:
-  - vars.yml
   tasks:
-    - name : install prerequisites
-      apt:
-        name: "{{ MODULES }}"
-    
-    - name: add apt-key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-    
-    - name: add docker repo
-      apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu focal stable
 
-    - name: install docker
+    - name: Install Docker 
       apt:
-        name: "{{ DOCKER }}"
+        name: docker.io
+        state: latest
         update_cache: yes
 
-    - name: add permissions
-      shell: "usermod -aG docker vagrant"
+    - name: Install docker-compose
+      apt:
+        name: docker-compose
+        state: latest
+        update_cache: yes
+
+    - name: Install fish
+      apt:
+        name: fish
+
+    - name: add docker group & change default shell
+      user:
+        name: vagrant
+        groups: docker
+        shell: /usr/bin/fish
 
     - name: ctop -dependencies
       apt_key:
@@ -37,11 +38,3 @@
         name: docker-ctop
         update_cache: yes
 
-    - name: install fish
-      apt:
-        name: fish
-
-    - name: default shell
-      user:
-        name: vagrant
-        shell: /usr/bin/fish
