@@ -1,0 +1,9 @@
+- name: Check if Swarm is Already Initialized
+  shell: docker node ls
+  register: swarm_status
+  ignore_errors: true
+
+- name: Manager joins cluster
+  shell: "docker swarm join --token {{ hostvars['node-1']['manager_token']['stdout'] }} {{ hostvars['node-1']['ansible_host'] }}:2377 "
+  when: swarm_status.rc != 0
+  run_once: true

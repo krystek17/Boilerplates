@@ -1,0 +1,21 @@
+- name: Install docker
+  apt:
+    name: docker.io
+    state: latest
+    update_cache: yes
+
+- name: Install docker-compose
+  apt:
+    name: docker-compose
+    state: latest
+    update_cache: yes
+
+- name: Install fish
+  apt:
+    name: fish
+
+- name: docker group & default shell
+  user:
+    name: vagrant
+    groups: docker
+    shell: /usr/bin/fish

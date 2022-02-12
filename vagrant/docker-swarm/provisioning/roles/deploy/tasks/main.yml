@@ -1,0 +1,6 @@
+---
+- name: install caddy
+  shell: "docker service create --name webserver -p 80:80 caddy"
+
+- name: install portainer
+  shell: "docker service create --name portainer -p 9000:9000 portainer/portainer-ce"

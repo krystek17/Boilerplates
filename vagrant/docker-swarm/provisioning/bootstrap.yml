@@ -1,0 +1,33 @@
+---
+- name: install docker & fish 
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - base
+
+- name: initialise swarm
+  hosts: node-1
+  become: true
+  roles:
+    - swarm-init
+
+- name: add manager to swarm
+  hosts: node-2
+  become: true
+  gather_facts: false
+  roles:
+    - managers
+
+- name: add workers to swarm
+  hosts: workers
+  become: true
+  gather_facts: false
+  roles:
+    - workers
+
+- name: deploy apps
+  hosts: node-1
+  become: true
+  roles:
+    - deploy
