@@ -21,7 +21,7 @@ Files and directory structure
 │     └── workers
 │        └── tasks
 │           └── main.yml
-└── Vagrantfile```
+└── Vagrantfile
 
 ```
 
