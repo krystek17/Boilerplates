@@ -27,8 +27,6 @@
 ## Code Overview
 With this Vagrantfile we are creating 4 machines on the same subnet:
 ```
-#!/usr/bin/env ruby
-
 N = 4
 
 (1..N).each do |id|
