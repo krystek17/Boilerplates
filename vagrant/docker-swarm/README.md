@@ -2,7 +2,7 @@
 
 ## Files and Directory Structure
 
-```tree
+```
 ├── provisioning
 │  ├── bootstrap.yml
 │  └── roles
