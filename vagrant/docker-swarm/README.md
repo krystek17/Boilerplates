@@ -26,7 +26,7 @@
 ```
 ## Code Overview
 With this Vagrantfile we are creating 4 machines on the same subnet:
-```
+```ruby
 N = 4
 
 (1..N).each do |id|
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 And we provision each of them with the following playbook:
-```
+```yaml
 ---
 - name: install docker & fish
   hosts: all
