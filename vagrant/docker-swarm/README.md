@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
   config.vm.define "node-#{id}" do |node|
     node.vm.hostname = "node-#{id}"
-      node.vm.network "private_network", ip: "192.168.77.#{9+id}"
+    node.vm.network "private_network", ip: "192.168.77.#{9+id}"
     node.vm.box = "generic/ubuntu2004"
     node.vm.provider "libvirt" do |v|
       v.memory = "1024"
