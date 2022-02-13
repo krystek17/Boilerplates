@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
     node.vm.network "private_network", ip: "192.168.77.#{9+id}"
     node.vm.box = "generic/ubuntu2004"
     node.vm.provider "libvirt" do |v|
-      v.memory = "1024"
+      v.memory = "512"
       v.cpus = "1"
       end
 
