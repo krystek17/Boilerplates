@@ -7,10 +7,10 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
   config.vm.define "node-#{id}" do |node|
     node.vm.hostname = "node-#{id}"
-    node.vm.network "private_network", ip: "192.168.77.#{9+id}"
+    node.vm.network "private_network", ip: "192.168.77.#{69+id}"
     node.vm.box = "generic/ubuntu2004"
     node.vm.provider "libvirt" do |v|
-      v.memory = "1024"
+      v.memory = "512"
       v.cpus = "1"
       end
 
@@ -20,6 +20,7 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "provisioning/bootstrap.yml"
         ansible.verbose = false
         ansible.compatibility_mode = "2.0"
+        ansible.groups = $ANSIBLE_GROUPS
         ansible.groups = {
             "managers" => ["node-[1:2]"],
             "workers" => ["node-[3:4]"],
