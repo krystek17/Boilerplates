@@ -4,6 +4,7 @@
   strategy: free
   become: yes
   roles:
+    - fish
     - containerd
     - kubernetes
 
