@@ -1,0 +1,9 @@
+---
+modules:
+  - name: overlay
+  - name: br_netfilter
+
+parameters:
+  - name: net.bridge.bridge-nf-call-iptables
+  - name: net.ipv4.ip_forward
+  - name: net.bridge.bridge-nf-call-ip6tables

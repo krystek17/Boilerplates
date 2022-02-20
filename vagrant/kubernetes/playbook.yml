@@ -1,0 +1,21 @@
+---
+- hosts: cluster
+  gather_facts: yes
+  strategy: free
+  become: yes
+  roles:
+    - containerd
+    - kubernetes
+
+- hosts: masters
+  gather_facts: yes
+  become: yes
+  roles:
+    - masters
+#
+- hosts: workers
+  gather_facts: yes
+  become: yes
+  roles:
+    - nodes
+

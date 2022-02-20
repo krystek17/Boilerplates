@@ -1,0 +1,47 @@
+---
+- name: Install package
+  apt:
+    name: containerd
+    state: present
+    update_cache: yes
+
+- name: Configure /etc/modules-load.d/containerd.conf
+  blockinfile:
+    path: /etc//modules-load.d/containerd.conf
+    create: yes
+    block: |
+      overlay
+      br_netfilter
+
+- name: Add modules
+  community.general.modprobe:
+    name: "{{ item.name }}"
+    state: present
+  with_items: "{{ modules | default([]) }}"
+
+- name: Set sysctl parameters
+  sysctl:
+    name: "{{ item.name }}"
+    value: "1"
+    sysctl_set: yes
+    state: present
+    reload: yes
+  with_items: "{{ parameters | default([]) }}"
+
+- name: Create a directory
+  file:
+    path: /etc/containerd
+    state: directory
+    mode: 0755
+
+- name: Generate a default configuration
+  shell: containerd config default > /etc/containerd/config.toml
+  args:
+    creates: /etc/containerd/config.toml
+  notify: Restart containerd
+
+- name: Enable containerd
+  systemd:
+    name: containerd
+    state: started
+    enabled: yes

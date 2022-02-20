@@ -1,0 +1,42 @@
+- name: Check if kudeadm has already run
+  stat:
+    path: "/etc/kubernetes/pki/ca.key"
+  register: output
+
+- name: Init cluster if needed
+  shell: kubeadm init --apiserver-advertise-address="{{ hostvars['node-1']['ansible_eth1']['ipv4']['address'] }}" --apiserver-cert-extra-sans="{{ hostvars['node-1']['ansible_eth1']['ipv4']['address'] }}"  --node-name master --pod-network-cidr=192.168.0.0/16
+  when: not output.stat.exists
+  run_once: yes
+  register: ini_cluster
+
+- name: Creates Kubernetes config directory
+  when: ini_cluster is succeeded
+  file:
+    path: ".kube/"
+    state: directory
+
+- name: Copy admin.conf
+  when: ini_cluster is succeeded
+  copy:
+    src: "/etc/kubernetes/admin.conf"
+    dest: ".kube/config"
+    owner: "{{ ansible_user | default(ansible_user_id) }}"
+    group: "{{ ansible_user | default(ansible_user_id) }}"
+    mode: 0755
+    remote_src: true
+
+- name: Check if Flannel network
+  shell: kubectl --kubeconfig=/etc/kubernetes/admin.conf get ds --all-namespaces | grep flannel
+  register: check_net
+  ignore_errors: true
+
+- name: Install Flannel Network
+  become: false
+  when: check_net is failed
+  command: kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+
+
+- name: Generate join command
+  command: kubeadm token create --print-join-command
+  register: join_command
+
