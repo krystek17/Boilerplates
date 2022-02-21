@@ -14,7 +14,7 @@
       br_netfilter
 
 - name: Add modules
-  community.general.modprobe:
+  modprobe:
     name: "{{ item.name }}"
     state: present
   with_items: "{{ modules | default([]) }}"
