@@ -2,6 +2,7 @@
 
 ## Files and Directories Structure
 ```
+.
 ├── playbook.yml
 ├── README.md
 ├── roles
@@ -9,8 +10,6 @@
 │  │  ├── defaults
 │  │  │  └── main.yml
 │  │  ├── handlers
-│  │  │  └── main.yml
-│  │  ├── meta
 │  │  │  └── main.yml
 │  │  └── tasks
 │  │     └── main.yml
