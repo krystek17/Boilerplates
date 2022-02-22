@@ -13,6 +13,7 @@ Git clone and run `vagrant up` to start playing with your cluster.
     - [Initialise the cluster](#initialise-the-cluster)
     - [Container Network Interface](#container-network-interface)   
   - [Configure the nodes](#nodes)
+- [Deployment](#deployment)
 
 ## Files and Directories Structure
 ```
@@ -300,3 +301,5 @@ Last but not least you can add a node with the token that was stored in the prev
 - name: Join the node to cluster
   shell: "{{ hostvars['node-1']['join_command']['stdout'] }}"
 ```
+## Deployment
+WIP
