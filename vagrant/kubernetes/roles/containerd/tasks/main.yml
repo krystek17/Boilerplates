@@ -7,7 +7,7 @@
 
 - name: Configure /etc/modules-load.d/containerd.conf
   blockinfile:
-    path: /etc//modules-load.d/containerd.conf
+    path: /etc/modules-load.d/containerd.conf
     create: yes
     block: |
       overlay
