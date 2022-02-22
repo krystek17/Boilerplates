@@ -107,6 +107,8 @@ The playbook:
     - nodes
 ```
 ## Create a kubernetes cluster
+We will be setting up a Kubernetes cluster that will consist of one master and one worker node. All the vms will run Ubuntu 20.04 and Ansible playbooks will be used for provisioning.
+
 
 ### Container-runtime
 ### Kube-packages
