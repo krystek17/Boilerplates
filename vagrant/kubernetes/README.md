@@ -101,12 +101,12 @@ The playbook:
 
 ### Table of contents
 
-- [containerd](#container-runtime)
-- [kubernetes](#Kube-packages)
-- [configure the master](#Master)
-- [configure the nodes](#Nodes)
+- [Containerd](Container-runtime)
+- [Kubernetes](Kube-packages)
+- [Configure the master](Master)
+- [Configure the nodes](Nodes)
 
-#### container-runtime
-#### Kube-packages
-#### Master
-#### Nodes
+### Container-runtime
+### Kube-packages
+### Master
+### Nodes
