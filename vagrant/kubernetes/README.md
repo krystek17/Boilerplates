@@ -287,6 +287,8 @@ In this example I have chosen Flannel for its simplicity:
 
 [Source 3](https://github.com/flannel-io/flannel)
 
+[Source 4](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
+
 ### Nodes
 Last but not least you can add a node with the token that was stored in the previous task:
 ```yaml
