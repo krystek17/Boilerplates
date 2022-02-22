@@ -1,6 +1,6 @@
 # Kubernetes with Vagrant and Ansible
 
-Git clone and run `vagrant up` to start playing with you cluster.
+Git clone and run `vagrant up` to start playing with your cluster.
 
 ## Table of contents
 
@@ -200,9 +200,13 @@ Let's first install the `kubeadm` `kubelet` `kubectl`
 
 - name: Install kubernetes packages
   apt:
-    name: "{{ packages }}"
+    name: "{{ item }}"
     update_cache: yes
     state: present
+  with_items: 
+    - name: kubeadm
+    - name: kubectl
+    - name: kubelet
 ```
 The swap needs to be disabled:
 ```yaml
