@@ -277,6 +277,8 @@ We now need to generate a token let other nodes join the cluster
 [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 
 [kubeadm init](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/)
+
+[kubeadm token](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/)
 #### Container Network Interface
 Now that kubernetes is installed we need to deploy a Container Network Interface (CNI) so that the pods can communicate with each other. 
 
