@@ -183,7 +183,8 @@ Generate the default config then restart and enable containerd.
     state: started
     enabled: yes
 ```
-[Sources](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
+[Container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
+
 ### Kubernetes Installation
 Let's first install the `kubeadm` `kubelet` `kubectl`
 ```yaml
@@ -233,11 +234,11 @@ The swap needs to be disabled:
 ```
 
 
-[Source 1](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
+[Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 
-[Source 2](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/kubelet-integration/#the-kubelet-drop-in-file-for-systemd)
+[kubelet drop-in file](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/kubelet-integration/#the-kubelet-drop-in-file-for-systemd)
 
-[Source 3](https://fdio-vpp.readthedocs.io/en/latest/usecases/contiv/CUSTOM_MGMT_NETWORK.html)
+[Custom Management Network](https://fdio-vpp.readthedocs.io/en/latest/usecases/contiv/CUSTOM_MGMT_NETWORK.html)
 
 ### Master
 
@@ -272,9 +273,9 @@ We now need to generate a token let other nodes join the cluster
   register: join_command
 ```
 
-[Source 1](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
+[Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 
-[Source 2](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/)
+[kubeadm init](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/)
 #### Container Network Interface
 Now that kubernetes is installed we need to deploy a Container Network Interface (CNI) so that the pods can communicate with each other. 
 
@@ -285,13 +286,13 @@ In this example I have chosen Flannel for its simplicity:
   command: kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 
 ```
-[Source 1](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#pod-network)
+[Pod Network](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#pod-network)
 
-[Source 2](https://kubernetes.io/docs/concepts/cluster-administration/addons/)
+[Addons](https://kubernetes.io/docs/concepts/cluster-administration/addons/)
 
-[Source 3](https://github.com/flannel-io/flannel)
+[Flannel](https://github.com/flannel-io/flannel)
 
-[Source 4](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
+[Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 
 ### Nodes
 Last but not least you can add a node with the token that was stored in the previous task:
