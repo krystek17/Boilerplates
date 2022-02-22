@@ -4,8 +4,10 @@
 ```
 .
 ├── playbook.yml
-├── README.md
 ├── roles
+│  ├── cni
+│  │  └── tasks
+│  │     └── main.yml
 │  ├── containerd
 │  │  ├── defaults
 │  │  │  └── main.yml

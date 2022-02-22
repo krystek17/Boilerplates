@@ -1,0 +1,9 @@
+- name: Check if Flannel network
+  shell: kubectl --kubeconfig=/etc/kubernetes/admin.conf get ds --all-namespaces | grep flannel
+  register: check_net
+  ignore_errors: true
+
+- name: Install Flannel Network
+  become: false
+  when: check_net is failed
+  command: kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml

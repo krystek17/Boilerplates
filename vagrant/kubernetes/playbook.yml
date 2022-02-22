@@ -13,6 +13,7 @@
   become: yes
   roles:
     - masters
+    - cni
 #
 - hosts: workers
   gather_facts: yes
