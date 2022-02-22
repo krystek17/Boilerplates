@@ -98,3 +98,15 @@ The playbook:
     - nodes
 ```
 ## Create a kubernetes cluster
+
+### Table of contents
+
+- [containerd](#container-runtime)
+- [kubernetes](#Kube-packages)
+- [configure the master](#Master)
+- [configure the nodes](#Nodes)
+
+#### container-runtime
+#### Kube-packages
+#### Master
+#### Nodes
