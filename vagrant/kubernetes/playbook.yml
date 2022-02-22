@@ -14,7 +14,7 @@
   roles:
     - masters
     - cni
-#
+
 - hosts: workers
   gather_facts: yes
   become: yes
