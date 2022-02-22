@@ -1,4 +1,13 @@
 # Kubernetes with Vagrant and Ansible
+## Table of contents
+
+- [Files and Directories Structure](#files-and-directories-structure)
+- [Code Overview](#code-overview)
+- [Creates a Kubernetes cluster](#create-a-kubernetes-cluster)
+  - [Containerd](#container-runtime)
+  - [Kubernetes](#kube-packages)
+  - [Configure the master](#master)
+  - [Configure the nodes](#nodes)
 
 ## Files and Directories Structure
 ```
@@ -98,13 +107,6 @@ The playbook:
     - nodes
 ```
 ## Create a kubernetes cluster
-
-### Table of contents
-
-- [Containerd](Container-runtime)
-- [Kubernetes](Kube-packages)
-- [Configure the master](Master)
-- [Configure the nodes](Nodes)
 
 ### Container-runtime
 ### Kube-packages
