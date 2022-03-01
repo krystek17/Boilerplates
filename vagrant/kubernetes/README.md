@@ -230,7 +230,6 @@ The swap needs to be disabled:
     state: present
   with_items:
     - { name: 'vm.swappiness', value: '0' }
-    - { name: 'net.bridge.bridge-nf-call-iptables', value: '1' }
 ```
 
 
