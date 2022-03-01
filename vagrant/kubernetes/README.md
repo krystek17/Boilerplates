@@ -69,7 +69,6 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
   end
 
-
   (1..N).each do |i|
     config.vm.define "node-#{i}" do |node|
       node.vm.network "private_network", ip: "#{NETWORK}.#{i + 9}"
