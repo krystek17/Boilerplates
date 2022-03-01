@@ -141,7 +141,7 @@ Add the two modules with modprobe:
 ```yaml
 - name: Add modules
   modprobe:
-    name: "{{ item.name }}"
+    name: "{{ item }}"
     state: present
   with_items:
     - overlay
