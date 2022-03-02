@@ -1,9 +1,0 @@
----
-- name: Install fish
-  apt:
-    name: fish
-
-- name: Default shell
-  user:
-    name: vagrant
-    shell: /usr/bin/fish
