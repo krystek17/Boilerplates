@@ -1,0 +1,41 @@
+# Gather facts needs to be disabled
+- name: Define the fallback default ssh port
+  set_fact:
+    default_ssh_port: 22
+
+- name: Set configured port fact
+  set_fact:
+    configured_port: "{{ ansible_port }}"
+
+- name: Try configured ansible port
+  wait_for_connection:
+    timeout: 5
+  ignore_errors: true
+  register: ssh_port_result
+
+- name: Set ansible_port to the fallback default port
+  set_fact:
+    ansible_port: "{{ default_ssh_port }}"
+  when:
+    - ssh_port_result is failed
+
+- name: Full failure
+  fail: msg="Neither the configured ansible_port {{ ansible_port }} nor the fallback port {{ _default_ssh_port }} were reachable"
+  when:
+    - ssh_port_result is failed
+    - ssh_port_default_result is defined
+    - ssh_port_default_result is failed
+
+- name: change the default ssh port
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "^Port"
+    line: "Port {{ configured_port }}"
+  notify: "restart sshd"
+
+- name: Ensure SSH is reloaded
+  meta: flush_handlers
+
+- name: Change ssh port used by ansible
+  set_fact:
+    ansible_ssh_port: "{{ ansible_port }}"
