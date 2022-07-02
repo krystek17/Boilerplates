@@ -13,12 +13,12 @@
 
 - name: Install docker key
   apt_key:
-    url: https://download.docker.com/linux/debian/gpg
+    url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
 - name: Add docker repository
   apt_repository:
-    repo: deb https://download.docker.com/linux/debian buster stable
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
 
 - name: Install docker
@@ -37,5 +37,5 @@
     name: "{{ username }}"
     groups: docker
 
-- name: Ensure handlers are notified now to avoid firewall conflicts.
+- name: Restart docker
   meta: flush_handlers

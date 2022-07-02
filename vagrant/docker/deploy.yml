@@ -3,17 +3,38 @@
   become: yes
   tasks:
 
-    - name: Install Docker 
+    - name: Install dependencies
       apt:
-        name: docker.io
-        state: latest
+        name: "{{item}}"
+        state: present
         update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
 
-    - name: Install docker-compose
+    - name: Install docker key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add docker repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+
+    - name: Install docker
       apt:
-        name: docker-compose
+        name: "{{item}}"
         state: latest
         update_cache: yes
+      loop:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-compose
 
     - name: Install fish
       apt:
